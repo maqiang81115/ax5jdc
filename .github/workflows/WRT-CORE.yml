@@ -117,9 +117,15 @@ jobs:
 
           VERSION_INFO=$(git show -s --date=short --format="作者: %an<br/>时间: %cd<br/>内容: %s<br/>hash: %H")
           echo "VERSION_INFO=$VERSION_INFO" >> $GITHUB_ENV
-          VERSION_KERNEL=$(grep -oP 'LINUX_KERNEL_HASH-\K[0-9]+\.[0-9]+\.[0-9]+' include/kernel-6.6)
-           if [[ $WRT_REPO == *"lede"* ]]; then
-            VERSION_KERNEL=$(grep -oP 'LINUX_KERNEL_HASH-\K[0-9]+\.[0-9]+\.[0-9]+' include/kernel-6.1)
+          VERSION_KERNEL=$(grep -oP 'LINUX_KERNEL_HASH-\K[0-9]+\.[0-9]+\.[0-9]+' include/kernel-6.6 2>/dev/null || true)
+          if [ -z "$VERSION_KERNEL" ]; then
+            VERSION_KERNEL=$(grep -oP 'LINUX_KERNEL_HASH-\K[0-9]+\.[0-9]+\.[0-9]+' include/kernel-6.1 2>/dev/null || true)
+          fi
+          if [ -z "$VERSION_KERNEL" ]; then
+            VERSION_KERNEL=$(grep -oP 'LINUX_VERSION-\K[0-9]+\.[0-9]+' include/kernel-version.mk 2>/dev/null | head -n1 || true)
+          fi
+          if [ -z "$VERSION_KERNEL" ]; then
+            VERSION_KERNEL=unknown
           fi
           echo "VERSION_KERNEL=$VERSION_KERNEL" >> $GITHUB_ENV
           if git log --since="$(date -d 'yesterday 00:00' '+%Y-%m-%dT%H:%M:%S')" --until="$(date -d 'today 00:00' '+%Y-%m-%dT%H:%M:%S')" --pretty=format:"%h %s" --no-merges -- . ':(exclude)scripts/feeds' | grep -q .; then
