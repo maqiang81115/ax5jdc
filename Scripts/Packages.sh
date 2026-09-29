@@ -29,6 +29,7 @@ UPDATE_PACKAGE "homeproxy" "VIKINGYFY/homeproxy" "main"
 # UPDATE_PACKAGE "nekoclash" "Thaolga/luci-app-nekoclash" "main"
 # UPDATE_PACKAGE "openclash" "vernesong/OpenClash" "dev" "pkg"
 UPDATE_PACKAGE "passwall" "xiaorouji/openwrt-passwall" "main" "pkg"
+UPDATE_PACKAGE "qmodem" "FUjr/QModem" "main" "name"
 UPDATE_PACKAGE "ssr-plus" "fw876/helloworld" "master"
 # UPDATE_PACKAGE "alist" "sbwml/luci-app-alist" "main" // alist 替换会导致编译错误
 UPDATE_PACKAGE "mosdns" "sbwml/luci-app-mosdns" "v5"
@@ -83,4 +84,4 @@ UPDATE_VERSION "sing-box"
 UPDATE_VERSION "tailscale"
 UPDATE_VERSION "alist"
 #修复Openvpnserver一键生成证书
-UPDATE_VERSION "openvpn-easy-rsa" 
+UPDATE_VERSION "openvpn-easy-rsa"
