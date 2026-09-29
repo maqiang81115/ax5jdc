@@ -1,4 +1,4 @@
-#JDCloud 亚瑟 AX1800 Pro (RE-SS-01) 带WiFi 满血NSS
+#JDC-Arthur
 CONFIG_TARGET_qualcommax=y
 CONFIG_TARGET_qualcommax_ipq60xx=y
 CONFIG_TARGET_MULTI_PROFILE=y
